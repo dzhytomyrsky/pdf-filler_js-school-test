@@ -63,7 +63,8 @@ params.lines.map(item => {
         element.style.width = `${elem.width}%`;
         element.style.backgroundColor = elem.background;
         element.classList.add('line__element');
-
+        // element.dataset.updateTime = item.updateTime;
+        
         line.appendChild(element);
     })
 
@@ -71,9 +72,35 @@ params.lines.map(item => {
 });
 
 const renderedLines = document.querySelectorAll('.line');
+// const renderedLineElements = document.querySelectorAll('.line__element');
 
-renderedLines.forEach(elem => {
-    setInterval( () => {
-        elem.style.backgroundColor = hexGenerator();
-    }, elem.dataset.updateTime)
-});
+const fireColorInterval = (elems) => {
+    elems.forEach(e => {
+        setInterval( () => {
+            e.style.backgroundColor = hexGenerator();
+        }, e.dataset.updateTime)
+    })
+}
+
+fireColorInterval(renderedLines);
+// fireColorInterval(renderedLineElements);
+
+/*
+    Реализовал скрипт согласно условиям задания. 
+    Обновляются фоновые цвета линий.
+
+    Поскольку в задании не написано об обновлении цвета фона для элементов закомментировал этот код.    
+    Для того, чтоб функционал работал надо раскомментировать строки: 66, 75, 86
+
+    Код написан используя ES6, соглсно https://caniuse.com/ 
+    все 3 обязательных браузера для тестирования поддерживают использование:
+     - переменных const (prove link: https://caniuse.com/#search=const);
+     - переменных let (prove link: https://caniuse.com/#search=let);
+     - стралочных функций (prove link: https://caniuse.com/#search=arrow%20functions);
+     - шаблонные строки (prove link: https://caniuse.com/#search=template%20string).
+    При необходимости могу переписать на ES5.
+
+     Буду очень благодарен за любые комментарии и советы на:
+      - почту: d.zhytomyrsky@gmail.com
+      - FB: https://www.facebook.com/dmytro.zhytomyrsky
+*/
